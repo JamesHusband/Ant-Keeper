@@ -1,0 +1,9 @@
+{
+  "name": "excal-ecs-demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/excal-ecs-demo/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project excal-ecs-demo --web",
+  "targets": {}
+}
