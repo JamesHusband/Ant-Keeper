@@ -1,7 +1,8 @@
 # Table of contents
 
 * [Page](README.md)
-* [Gameplay](gameplay.md)
+* [Gameplay](gameplay/README.md)
+  * [Scale](gameplay/scale.md)
 * [Game elements](game-elements/README.md)
   * [Ant Types](game-elements/ant-types/README.md)
     * [The Queen](game-elements/ant-types/the-queen.md)
@@ -12,3 +13,4 @@
     * [Engineer](game-elements/ant-types/engineer.md)
 * [Mechanics](mechanics.md)
 * [Assets](assets.md)
+* [3d or 2d??](3d-or-2d.md)
