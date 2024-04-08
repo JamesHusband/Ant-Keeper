@@ -1,3 +1,3 @@
-export function ecsCore(): string {
-  return 'ecs-core';
-}
+export * from './components';
+export * from './systems';
+export * from './utils';
