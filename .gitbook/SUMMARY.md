@@ -3,7 +3,7 @@
 * [AntKeep GDD](README.md)
   * [Theme](antkeep-gdd/theme.md)
   * [Gameplay](antkeep-gdd/gameplay/README.md)
-    * [Starting Conditions](antkeep-gdd/gameplay/starting-conditions.md)
+    * [Starting Conditions.](antkeep-gdd/gameplay/starting-conditions..md)
     * [Mechanics](antkeep-gdd/gameplay/mechanics/README.md)
       * [Spawning Drones](antkeep-gdd/gameplay/mechanics/spawning-drones.md)
   * [Game elements](antkeep-gdd/game-elements/README.md)
