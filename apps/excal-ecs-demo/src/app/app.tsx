@@ -1,23 +1,73 @@
 import React, { useEffect, useRef } from 'react';
-import { Engine, Actor, Color, Vector, Scene } from 'excalibur';
+import { Engine, Actor, Color, Scene, Vector, CollisionType } from 'excalibur';
 
-// Ant Actor Factory
-const createAnt = (game) => {
-  const x = Math.random() * game.drawWidth;
-  const y = Math.random() * game.drawHeight;
+const TerrainType = {
+  Grass: 'Grass',
+  Water: 'Water',
+  Rock: 'Rock'
+};
+
+const TerrainColors = {
+  [TerrainType.Grass]: Color.Green,
+  [TerrainType.Water]: Color.Blue,
+  [TerrainType.Rock]: Color.Gray
+};
+
+const createTerrain = (x, y, type) => {
+  let actorOptions = {
+    x: x + 50,
+    y: y + 50,
+    width: 100,
+    height: 100,
+    color: TerrainColors[type] || Color.Black,
+    collisionType: type === TerrainType.Rock ? CollisionType.Fixed : CollisionType.Passive
+  };
+  return new Actor(actorOptions);
+};
+
+const createAnt = (drawWidth, drawHeight) => {
+  const x = Math.random() * drawWidth;
+  const y = Math.random() * drawHeight;
   const ant = new Actor({
     x: x,
     y: y,
     width: 20,
     height: 20,
-    color: Color.Red
+    color: Color.Red,
+    vel: Vector.fromAngle(Math.random() * 2 * Math.PI).scale(100)
   });
-  ant.dx = Math.random() * 200 - 100; // Random velocity in x
-  ant.dy = Math.random() * 200 - 100; // Random velocity in y
   return ant;
 };
 
-// React Component
+const populateTerrain = (scene, drawWidth, drawHeight) => {
+  for (let i = 0; i < drawWidth; i += 100) {
+    for (let j = 0; j < drawHeight; j += 100) {
+      const type = Object.values(TerrainType)[Math.floor(Math.random() * Object.values(TerrainType).length)];
+      const terrain = createTerrain(i, j, type);
+      scene.add(terrain);
+    }
+  }
+};
+
+const handleAntMovement = (ant, terrainObjects, delta, game) => {
+  ant.pos = ant.pos.add(ant.vel.scale(delta / 1000));
+  terrainObjects.forEach(terrain => {
+    if (terrain.color === Color.Blue && ant.collides(terrain)) {
+      ant.vel = ant.vel.scale(0.5);  // Slow down in water
+    }
+  });
+
+  // Ensure ants bounce back at the edges
+  if (ant.pos.x < 0 || ant.pos.x > game.drawWidth) {
+    ant.vel.x *= -1;  // Reverse horizontal velocity
+    ant.pos.x = Math.max(0, Math.min(ant.pos.x, game.drawWidth));  // Clamp position within bounds
+  }
+  if (ant.pos.y < 0 || ant.pos.y > game.drawHeight) {
+    ant.vel.y *= -1;  // Reverse vertical velocity
+    ant.pos.y = Math.max(0, Math.min(ant.pos.y, game.drawHeight));  // Clamp position within bounds
+  }
+};
+
 const App = () => {
   const canvasRef = useRef(null);
 
@@ -27,7 +77,6 @@ const App = () => {
       return;
     }
 
-    // Initialize the Excalibur Engine
     const game = new Engine({
       canvasElement: canvasRef.current,
       width: 800,
@@ -35,45 +84,30 @@ const App = () => {
       backgroundColor: Color.Azure
     });
 
-    // Create a new scene for the game
     const scene = new Scene(game);
     game.addScene('main', scene);
     game.goToScene('main');
 
-    // Add ants to the scene
-    for (let i = 0; i < 10; i++) {
-      const ant = createAnt(game);
-      scene.add(ant);
-    }
+    populateTerrain(scene, game.drawWidth, game.drawHeight);
+    const ants = Array.from({ length: 10 }, () => createAnt(game.drawWidth, game.drawHeight));
+    ants.forEach(ant => scene.add(ant));
 
-    // Update loop to move ants
     game.on('preupdate', ev => {
-      scene.actors.forEach(ant => {
-        ant.pos.x += ant.dx * ev.delta / 1000;
-        ant.pos.y += ant.dy * ev.delta / 1000;
-
-        // Reverse direction upon hitting boundaries
-        if (ant.pos.x < 0 || ant.pos.x > game.drawWidth) ant.dx *= -1;
-        if (ant.pos.y < 0 || ant.pos.y > game.drawHeight) ant.dy *= -1;
+      scene.actors.forEach(actor => {
+        handleAntMovement(actor, scene.actors, ev.delta, game);
       });
     });
 
-    // Start the game
     game.start().then(() => {
       console.log('Game started successfully');
     }).catch(err => {
       console.error('Failed to start the game', err);
     });
 
-    // Cleanup function
-    return () => {
-      game.stop();
-    };
+    return () => game.stop();
   }, []);
 
-  return (
-    <canvas ref={canvasRef} width="800" height="600" style={{ border: '1px solid black' }}></canvas>
-  );
+  return <canvas ref={canvasRef} width="800" height="600" style={{ border: '1px solid black' }}></canvas>;
 };
 
 export default App;
