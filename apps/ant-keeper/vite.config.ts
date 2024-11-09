@@ -5,7 +5,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/ant-keeper',
+  cacheDir: '../../node_modules/.vite/apps/excal-ecs-demo',
 
   server: {
     port: 4200,
@@ -25,7 +25,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/ant-keeper',
+    outDir: '../../dist/apps/excal-ecs-demo',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -42,7 +42,7 @@ export default defineConfig({
 
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/apps/ant-keeper',
+      reportsDirectory: '../../coverage/apps/excal-ecs-demo',
       provider: 'v8',
     },
   },
