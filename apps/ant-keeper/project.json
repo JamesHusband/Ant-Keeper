@@ -1,5 +1,5 @@
 {
-  "name": "excal-ecs-demo",
+  "name": "ant-keeper",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/excal-ecs-demo/src",
   "projectType": "application",
