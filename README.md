@@ -27,7 +27,9 @@ Our tagline is more than just a clever play on words. As you infect more ants, y
   The **SeptAnt** is a specialized caste that wields **spore-based abilities** to cast spells, disrupt enemies, or buff allies. As spell-casters, SeptAnts bring a new level of strategy to the game, allowing you to control the battlefield with a fungal touch.
 
 ### Current Development Status
-**AntKeeper** is very much a work in progress. While the core mechanics are still being developed and refined, we’re excited about where the game is heading! Our primary focus right now is building out the infection mechanics, resource management, and ant specialization system. Stay tuned for updates as we continue to expand and polish the game.
+
+
+**AntKeeper** is very much a work in progress. While the core mechanics are still being developed and refined, I am excited about where the game is heading! Primary focus right now is building out the infection mechanics, resource management, and ECS system. For now, enjoy watching ants...
 
 ### Installation
 
