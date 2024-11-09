@@ -4,6 +4,8 @@
 
 # AntKeeper!
 
+So, I was watching The Last Of Us and thought how cordisepts could be the foundation of some pretty fun game mechanics...
+
 Welcome to **AntKeeper**—a dark, strategic journey inspired by classics like *Dungeon Keeper*, but with a unique twist: **you’re not just managing an ant colony; you're a sentient spore of the *Cordyceps* fungus**! Your goal? **Infect, control, and conquer** the colony one ant at a time.
 
 ### Gameplay Overview
