@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ant-keeper/ecs-core": ["libs/ecs-core/src/index.ts"]
+      // "@ant-keeper/ecs-core": ["libs/ecs-core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
