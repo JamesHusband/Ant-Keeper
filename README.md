@@ -33,6 +33,8 @@ Our tagline is more than just a clever play on words. As you infect more ants, y
 
 **AntKeeper** is very much a work in progress. While the core mechanics are still being developed and refined, I am excited about where the game is heading! Primary focus right now is building out the infection mechanics, resource management, and ECS system. For now, enjoy watching ants...
 
+**Mission 1** One spore into the breach (and yes, I patted myself on the back for that name) - Just what exactly is the goal here? No clue at this point but the eureka moment is so damn close I can taste it, a bit like [cake](https://github.com/fantakuchen)
+
 ### Installation
 
 To get started with the development build of **AntKeeper**, follow these steps:
